@@ -1,0 +1,53 @@
+‘<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>ajax登录验证</title>
+    <script type="text/javascript" src="/static/js/jquery-1.12.3.min.js"></script>
+    <script type="text/javascript">
+        $(function(){
+            $("#btnajax").click(function () {
+                username = $("#username").val();
+                password = $("#password").val();
+                rememberuser = $("#rememberuser").prop('checked');
+                rememberpwd = $("#rememberpwd").prop('checked');
+                $.ajax({
+                    'url':'/login_ajax_check',
+                    'type':'post',
+                    'dataType':'json',
+                    'data':{'username':username,'password':password,'rememberuser':rememberuser,'rememberpwd':rememberpwd},
+                    'async':false,
+                }).success(function (data) {
+                    if(data.res == 1){
+                        location.href = '/index';
+                    }
+                    else{
+                        $("#errmsg").show();
+                    }
+                })
+            })
+        })
+    </script>
+    <style>
+        #errmsg{
+            display: none;
+            color: red;
+        }
+    </style>
+</head>
+<body>
+<div>
+    用户名：<input type="text" id="username" name="username" value="{{ username }}"><br>
+    密码：<input type="password" id="password" name="password" value="{{ password }}"><br>
+    <div>
+            <input type="checkbox" id="rememberuser">记住用户名
+            <input type="checkbox" id="rememberpwd">记住密码
+    </div>
+    <input type="button" id="btnajax" value="登录">
+
+</div>
+<div id="errmsg">用户名或密码错误，请重新进行登录</div>
+
+
+</body>
+</html>

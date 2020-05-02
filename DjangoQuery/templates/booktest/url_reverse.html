@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>url反向解析</title>
+</head>
+<body>
+<a href="/index">静态链接，跳转至首页</a><br>
+<a href={% url 'booktest:index' %}>动态链接，跳转至首页</a><br>
+
+<a href={% url 'booktest:show_args' 1 2 %}>位置参数动态链接，跳转至首页</a><br>
+
+<a href={% url 'booktest:show_kwargs' c=3 d=4 %}>关键字参数动态链接，跳转至首页</a><br>
+</body>
+</html>

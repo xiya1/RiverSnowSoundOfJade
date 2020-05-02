@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>用户注册</title>
+    <script src="/static/js/jquery-1.12.3.min.js"></script>
+    <script>
+        $(function () {
+            $("#regeister").click(function () {
+                username = $("#username").val()
+                password = $("#password").val()
+                verifypassword = $("#VerifyPassword").val()
+                if(password == verifypassword){
+                    $.ajax({
+                    'url':'/regeisterpost',
+                    'type':'post',
+                    'dataType':'json',
+                    'data':{'username':username,'password':password,'verifypassword':verifypassword},
+                    'async':false,
+                }).success(function (data) {
+                    alert('注册成功!')
+                    if(data.res == 1){
+                        location.href = '/login'
+                    }
+                })
+                }
+                else{
+                    $(".verfiypwd").show();
+                }
+
+            })
+        })
+    </script>
+</head>
+<body>
+    <div>
+        用户名：<input type="text" id="username">
+    </div>
+    <div>
+        密码：<input type="password" id="password">
+    </div>
+    <div style="height: 20px;width: 100%;">
+        <div style="float: left;">确认密码：</div><input type="password" id="VerifyPassword" style="float: left;">
+        <h3 class='verfiypwd' style="color: red;font-size: 14px;display: none;margin: 0;">密码和确认密码不一致，请重新输入</h3>
+    </div>
+    <div style="height: 25px;position: relative;left: 0;top: 0;margin-top:10px; ">
+        <input type="button" id="regeister" value="注册" style="float: left;position: absolute;left: 0;top: 0;">
+    </div>
+</body>
+</html>

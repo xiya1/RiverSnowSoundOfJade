@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>ajax功能验证</title>
+    <script type="text/javascript" src="/static/js/jquery-1.12.3.min.js"></script>
+    <script type="text/javascript">
+        $(function () {
+            $('#ajax_button').click(function () {
+                alert(1);
+                $.ajax({
+                    'url':'/ajax_handle',
+                    'type':'get',
+                    'async':false,
+                    'dataType':'json'
+                }).success(function (data) {
+                    alert(2);
+                    if(data.res == 1){
+                        $('#comment').show();
+                    }
+                })
+                alert(3);
+            })
+        })
+    </script>
+    <style>
+        div{
+            color: #ff8fd9;
+            font-size: 20px;
+            display: none;
+        }
+    </style>
+</head>
+<body>
+
+<input type="button" id="ajax_button" value="按钮">
+<div id="comment">
+    发送ajax请求成功
+</div>
+</body>
+</html>
