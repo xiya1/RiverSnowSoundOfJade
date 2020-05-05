@@ -139,3 +139,26 @@ STATICFILES_DIRS = [os.path.join(BASE_DIR,'static')]
 
 #设置上传文件的保存目录
 MEDIA_ROOT =os.path.join(BASE_DIR,'static/media')
+
+# #redis设置存储session信息
+# # SESSION_ENGINE = 'redis_sessions.session'
+# # #redis服务的ip地址
+# # SESSION_REDIS_HOST = 'localhost'
+# # #redis服务的端口号
+# # SESSION_REDIS_PORT = 6379
+# # #redis中的哪一个数据库
+# # SESSION_REDIS_DB = 2
+# # #redis密码
+# # SESSION_REDIS_PASSWORD = ''
+# # #redis      session：唯一标识码
+# # SESSION_REDIS_PREFIX = 'session'
+
+SESSION_ENGINE = 'redis_sessions.session'
+SESSION_REDIS = {
+    'host': 'localhost',
+    'port': 6379,
+    'db': 2,
+    'password': '',
+    'prefix': 'sessionjiang',
+    'socket_timeout': 10
+}

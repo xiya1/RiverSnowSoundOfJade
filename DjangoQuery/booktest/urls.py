@@ -1,5 +1,5 @@
 from django.urls import path,re_path
-from  booktest import views
+from booktest import views
 #通过url函数设置url路由的配置项
 #在应用的urls文件中进行url配置时需严格区别开头和结尾
 urlpatterns = [
@@ -42,4 +42,6 @@ urlpatterns = [
     re_path('^prov$',views.prov),
     re_path('^city(\d+)$',views.city),
     re_path('^dis(\d+)$',views.city),
+    re_path('^set_session$',views.set_session),#设置session
+    re_path('^get_session$',views.get_session),#获取session
 ]

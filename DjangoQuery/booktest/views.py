@@ -461,3 +461,17 @@ def city(request,pid):
 #     #返回数据
 #     print('遍历完成，发送县1级信息json给ajax')
 #     return JsonResponse({'data':areas_list})
+
+
+
+def set_session(request):
+    '''设置session'''
+    request.session['username'] = 'smart'
+    request.session['age'] = 16
+    return HttpResponse('设置session')
+
+def get_session(request):
+    '''获取session'''
+    useranme = request.session['username']
+    age = request.session['age']
+    return HttpResponse(useranme+':'+str(age))
